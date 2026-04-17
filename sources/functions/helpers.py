@@ -1,5 +1,6 @@
 import os
 from typing import Optional
+import sys
 
 
 def read_input_txt(
@@ -37,3 +38,22 @@ def read_input_txt(
             return [transformer(line.strip()) for line in f]
     except FileNotFoundError as e:
         print(e)
+
+
+def read_stdin(transformer: str) -> Optional[list]:
+    """Función para leer datos desde la entrada estándar (stdin) y devolver una lista de líneas.
+    Args:
+        transformer (str): Función para transformar cada línea.
+    Returns:
+        list: Lista de líneas leídas desde la entrada estándar.
+    """
+    lines = []
+    while True:
+        try:
+            line = input()
+            if not line.strip():
+                break
+            lines.append(transformer(line.strip()))
+        except EOFError:
+            break
+    return lines if lines else None

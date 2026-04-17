@@ -1,1 +1,1 @@
-from .helpers import read_input_txt
+from .helpers import read_input_txt, read_stdin
